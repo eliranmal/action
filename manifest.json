@@ -1,5 +1,5 @@
 {
-  "name": "User Scripts API Demo",
+  "name": "action",
   "version": "1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "120",
@@ -7,8 +7,7 @@
   "background": {
     "service_worker": "service-worker.js"
   },
-  "permissions": ["storage", "userScripts"],
-  "host_permissions": ["https://example.com/*"],
+  "permissions": ["storage", "userScripts", "activeTab"],
   "action": {},
   "options_ui": {
     "page": "options.html",
