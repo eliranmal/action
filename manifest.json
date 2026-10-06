@@ -1,0 +1,17 @@
+{
+  "name": "User Scripts API Demo",
+  "version": "1.0",
+  "manifest_version": 3,
+  "minimum_chrome_version": "120",
+  "description": "runs a custom action on the current page.",
+  "background": {
+    "service_worker": "service-worker.js"
+  },
+  "permissions": ["storage", "userScripts"],
+  "host_permissions": ["https://example.com/*"],
+  "action": {},
+  "options_ui": {
+    "page": "options.html",
+    "open_in_tab": false
+  }
+}
