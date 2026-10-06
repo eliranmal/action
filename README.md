@@ -1,6 +1,6 @@
 # action 🎬
 
-runs a custom action on the current page.
+a browser extension for running a custom action on the current page.
 
 ## overview
 
