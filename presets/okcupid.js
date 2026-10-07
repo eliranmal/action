@@ -3,10 +3,9 @@ const parseStyle = (styleObject) => {
     return Object.entries(styleObject).map(e => e.join(': ')).join('; ')
 }
 
-const popup = (message, color = '#555', timeoutSeconds) => {
+const popup = (message, timeoutSeconds) => {
     const logBoxEl = document.getElementById('action-log-box')
     logBoxEl.textContent = message
-    logBoxEl.style.color = color
     if (Number.isInteger(timeoutSeconds)) {
         setTimeout(popdown, timeoutSeconds * 1000)
     }
@@ -15,7 +14,6 @@ const popup = (message, color = '#555', timeoutSeconds) => {
 const popdown = () => {
     const logBoxEl = document.getElementById('action-log-box')
     logBoxEl.textContent = ''
-    logBoxEl.style.color = ''
 }
 
 const createLogBox = () => {
@@ -23,14 +21,16 @@ const createLogBox = () => {
     logBoxEl.id = 'action-log-box'
     logBoxEl.style = parseStyle({
         position: 'fixed',
-        index: '9999',
+        index: '99999',
         right: '2rem',
         bottom: '2rem',
-        width: '7rem',
-        'text-align': 'right',
+        width: '4rem',
+        height: '4rem',
+        'line-height': '4rem',
+        'border-radius': '2rem',
+        'text-align': 'center',
         'font-size': '1.5em',
-        'font-weight': 'bold',
-        color: '#999',
+        'background-color': '#333',
     })
     return logBoxEl;
 }
@@ -42,12 +42,12 @@ const reviewProfile = () => {
     popdown()
 
     if (!familyDetailsEl || !familyDetailsEl.textContent?.includes(`kid`)) {
-        popup('hmm..')
+        popup('👀')
     } else if (familyDetailsEl.textContent?.includes(`Doesn’t have kids and doesn’t want them`)) {
-        popup('yay!!!', 'green')
+        popup('✅')
     } else {
         detailsEl.scrollIntoView()
-        popup('nay.', 'red')
+        popup('❌')
     }
 }
 
@@ -55,7 +55,7 @@ const likeProfile = () => {
     popdown()
     const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
     likeButtonEl.click()
-    popup('liked', '#aaa', 3)
+    popup('👍', 3)
 
 }
 const passProfile = () => {
@@ -64,7 +64,7 @@ const passProfile = () => {
     const passButtonEl = document.querySelector('.dt-action-buttons-button.pass')
     bodyContentEl?.scrollIntoView()
     passButtonEl.click()
-    popup('passed', '#aaa', 3)
+    popup('👎', 3)
 }
 
 const bindKeyListener = (key, callback, modifier = 'shiftKey') => {
