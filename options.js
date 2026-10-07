@@ -57,7 +57,7 @@ async function onSave() {
     await chrome.userScripts.update([
       {
         id: USER_SCRIPT_ID,
-        // matches: ['https://example.com/*'],
+        matches: ['*://*/*'],
         js: [{ code: script }]
       }
     ]);
@@ -66,7 +66,7 @@ async function onSave() {
     await chrome.userScripts.register([
       {
         id: USER_SCRIPT_ID,
-        // matches: ['https://example.com/*'],
+        matches: ['*://*/*'],
         js: [{ code: script }]
       }
     ]);
