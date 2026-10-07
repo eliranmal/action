@@ -4,6 +4,7 @@ const SAVE_BUTTON_ID = 'save-button';
 const FORM_ID = 'settings-form';
 const FORM = document.getElementById(FORM_ID);
 
+const TYPE_INPUT_NAME = 'type';
 const SCRIPT_TEXTAREA_NAME = 'custom-script';
 
 /**
@@ -29,11 +30,13 @@ async function updateUi() {
   if (!isUserScriptsAvailable()) return;
 
   // Access settings from storage with default values.
-  const { script } = await chrome.storage.local.get({
+  const { type, script } = await chrome.storage.local.get({
+    type: 'file',
     script: "alert('hi');"
   });
 
   // Update UI with current values.
+  FORM.elements[TYPE_INPUT_NAME].value = type;
   FORM.elements[SCRIPT_TEXTAREA_NAME].value = script;
 }
 
@@ -41,10 +44,12 @@ async function onSave() {
   if (!isUserScriptsAvailable()) return;
 
   // Get values from form.
+  const type = FORM.elements[TYPE_INPUT_NAME].value;
   const script = FORM.elements[SCRIPT_TEXTAREA_NAME].value;
 
   // Save to storage.
   chrome.storage.local.set({
+    type,
     script
   });
 
@@ -58,7 +63,7 @@ async function onSave() {
       {
         id: USER_SCRIPT_ID,
         matches: ['*://*/*'],
-        js: [{ code: script }]
+        js: type === 'file' ? [{ file: 'presets/okcupid.js' }] : [{ code: script }]
       }
     ]);
   } else {
@@ -67,7 +72,7 @@ async function onSave() {
       {
         id: USER_SCRIPT_ID,
         matches: ['*://*/*'],
-        js: [{ code: script }]
+        js: type === 'file' ? [{ file: 'presets/okcupid.js' }] : [{ code: script }]
       }
     ]);
   }

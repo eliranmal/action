@@ -34,3 +34,13 @@ textarea:focus {
 button {
   margin: 20px 0;
 }
+
+/* Hide custom script textarea by default */
+#custom-script-wrapper {
+  display: none;
+}
+
+/* Only show custom script textarea when custom type is selected */
+form:has(input[name='type'][value='custom']:checked) #custom-script-wrapper {
+  display: block;
+}
