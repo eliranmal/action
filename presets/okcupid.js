@@ -82,7 +82,6 @@ const bindKeyboardShortcuts = () => {
 
 const render = () => {
     document.body.appendChild(createLogBox())
-    document.body.appendChild(createReviewButton())
 }
 
 const main = () => {
