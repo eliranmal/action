@@ -3,10 +3,13 @@ const parseStyle = (styleObject) => {
     return Object.entries(styleObject).map(e => e.join(': ')).join('; ')
 }
 
-const popup = (message, color) => {
+const popup = (message, color = '#555', timeoutSeconds) => {
     const logBoxEl = document.getElementById('action-log-box')
     logBoxEl.textContent = message
     logBoxEl.style.color = color
+    if (Number.isInteger(timeoutSeconds)) {
+        setTimeout(popdown, timeoutSeconds * 1000)
+    }
 }
 
 const popdown = () => {
@@ -21,16 +24,13 @@ const createLogBox = () => {
     logBoxEl.style = parseStyle({
         position: 'fixed',
         index: '9999',
-        right: '1em',
-        bottom: '1em',
-        width: '7em',
-        'min-height': '7em',
-        padding: '.5em 1em',
-        border: '.2em solid',
-        'background-color': '#f2f2f2',
-        color: '#555',
+        right: '2rem',
+        bottom: '2rem',
+        width: '7rem',
+        'text-align': 'right',
+        'font-size': '1.5em',
         'font-weight': 'bold',
-        'text-align': 'center',
+        color: '#999',
     })
     return logBoxEl;
 }
@@ -42,7 +42,7 @@ const reviewProfile = () => {
     popdown()
 
     if (!familyDetailsEl || !familyDetailsEl.textContent?.includes(`kid`)) {
-        popup('hmm..  read more', '#555')
+        popup('hmm..')
     } else if (familyDetailsEl.textContent?.includes(`Doesn’t have kids and doesn’t want them`)) {
         popup('yay!!!', 'green')
     } else {
@@ -51,18 +51,20 @@ const reviewProfile = () => {
     }
 }
 
-const clickLike = () => {
-    const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
+const likeProfile = () => {
     popdown()
+    const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
     likeButtonEl.click()
-}
+    popup('liked', '#aaa', 3)
 
-const clickPass = () => {
+}
+const passProfile = () => {
+    popdown()
     const bodyContentEl = document.querySelector('.desktop-dt-content')
     const passButtonEl = document.querySelector('.dt-action-buttons-button.pass')
-    popdown()
     bodyContentEl?.scrollIntoView()
     passButtonEl.click()
+    popup('passed', '#aaa', 3)
 }
 
 const bindKeyListener = (key, callback, modifier = 'shiftKey') => {
@@ -76,8 +78,8 @@ const bindKeyListener = (key, callback, modifier = 'shiftKey') => {
 
 const bindKeyboardShortcuts = () => {
     bindKeyListener('R', reviewProfile)
-    bindKeyListener('L', clickLike)
-    bindKeyListener('P', clickPass)
+    bindKeyListener('L', likeProfile)
+    bindKeyListener('P', passProfile)
 }
 
 const render = () => {
