@@ -1,8 +1,8 @@
 
-/**
+/*
  * helpers for okcupid:
  *
- * - review current user profile according to set rule (META + Numpad 8)
+ * - review current user profile according to set rules (META + Numpad 8)
  * - like current user profile (META + Numpad 6)
  * - pass current user profile (META + Numpad 4)
  * - reload page to hopefully load a different user profile (META + Numpad 2)
