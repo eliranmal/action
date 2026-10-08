@@ -3,14 +3,14 @@
   "version": "1.0",
   "manifest_version": 3,
   "minimum_chrome_version": "120",
-  "description": "helpers for okcupid",
+  "description": "okcupid's little helpers",
   "background": {
     "service_worker": "service-worker.js"
   },
   "content_scripts": [
     {
       "matches": ["https://www.okcupid.com/*"],
-      "css": ["style.css"],
+      "css": ["content.css"],
       "js": ["content.js"]
     }
   ],

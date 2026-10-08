@@ -1,4 +1,4 @@
-# ok buddy <br/><sup><sub><sup>_helpers for okcupid_</sup></sub></sup>
+# ok buddy 💘 <br/><sup><sub><sup>_okcupid's little helpers_</sup></sub></sup>
 
 a browser extension for helping you find your next someone on okcupid.
 

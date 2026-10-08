@@ -30,7 +30,7 @@ const reviewProfile = () => {
     popdown()
 
     if (!familyDetailsEl || !familyDetailsEl.textContent?.includes(`kid`)) {
-        popup('👀')
+        popup('❔')
     } else if (familyDetailsEl.textContent?.includes(`Doesn’t have kids and doesn’t want them`)) {
         popup('✅')
     } else {
