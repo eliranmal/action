@@ -3,12 +3,10 @@ const parseStyle = (styleObject) => {
     return Object.entries(styleObject).map(e => e.join(': ')).join('; ')
 }
 
-const popup = (message, timeoutSeconds) => {
+const popup = (message, timeoutSeconds = 2) => {
     const logBoxEl = document.getElementById('action-log-box')
     logBoxEl.textContent = message
-    if (Number.isInteger(timeoutSeconds)) {
-        setTimeout(popdown, timeoutSeconds * 1000)
-    }
+    setTimeout(popdown, timeoutSeconds * 1000)
 }
 
 const popdown = () => {
@@ -55,7 +53,7 @@ const likeProfile = () => {
     popdown()
     const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
     likeButtonEl.click()
-    popup('👍', 2)
+    popup('👍', 1)
 
 }
 
@@ -65,7 +63,7 @@ const passProfile = () => {
     const passButtonEl = document.querySelector('.dt-action-buttons-button.pass')
     bodyContentEl?.scrollIntoView()
     passButtonEl.click()
-    popup('👎', 2)
+    popup('👎', 1)
 }
 
 
