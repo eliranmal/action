@@ -1,31 +1,22 @@
 
-/*
- * helpers for okcupid:
- *
- * - review current user profile according to set rules (META + Numpad 8)
- * - like current user profile (META + Numpad 6)
- * - pass current user profile (META + Numpad 4)
- * - reload page to hopefully load a different user profile (META + Numpad 2)
- */
-
 const parseStyle = (styleObject) => {
     return Object.entries(styleObject).map(e => e.join(': ')).join('; ')
 }
 
 const popup = (message, timeoutSeconds = 3) => {
-    const logBoxEl = document.getElementById('action-log-box')
-    logBoxEl.textContent = message
-    logBoxEl.style.opacity = '1'
-    logBoxEl.style.transition = `opacity ${timeoutSeconds}s ease-in`
-    logBoxEl.style.opacity = '0'
+    const logEl = document.getElementById('ok-buddy-log')
+    logEl.textContent = message
+    logEl.style.opacity = '1'
+    logEl.style.transition = `opacity ${timeoutSeconds}s ease-in`
+    logEl.style.opacity = '0'
     setTimeout(popdown, timeoutSeconds * 1000)
 }
 
 const popdown = () => {
-    const logBoxEl = document.getElementById('action-log-box')
-    logBoxEl.style.opacity = '1'
-    logBoxEl.style.transition = ''
-    logBoxEl.textContent = ''
+    const logEl = document.getElementById('ok-buddy-log')
+    logEl.style.opacity = '1'
+    logEl.style.transition = ''
+    logEl.textContent = ''
 }
 
 const createLogBox = () => {
@@ -37,23 +28,23 @@ const createLogBox = () => {
         height: '4rem',
         'border-radius': '2rem',
     }
-    const logBoxEl = document.createElement('div')
-    const logBoxBgEl = document.createElement('div')
-    logBoxEl.id = 'action-log-box'
-    logBoxEl.style = parseStyle({
+    const logEl = document.createElement('div')
+    logEl.id = 'ok-buddy-log'
+    logEl.style = parseStyle({
         ...baseStyle,
         index: '99999',
         'line-height': '4rem',
         'text-align': 'center',
         'font-size': '1.5em',
     })
-    logBoxBgEl.style = parseStyle({
+    const logBoxEl = document.createElement('div')
+    logBoxEl.style = parseStyle({
         ...baseStyle,
         index: '99998',
         'background-color': '#333',
     })
-    logBoxBgEl.appendChild(logBoxEl)
-    return logBoxBgEl;
+    logBoxEl.appendChild(logEl)
+    return logBoxEl;
 }
 
 const reviewProfile = () => {

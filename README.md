@@ -1,17 +1,9 @@
-# action 🎬
+# ok buddy <br/><sup><sub><sup>_helpers for okcupid_</sup></sub></sup>
 
-a browser extension for running a custom action on the current page.
+a browser extension for helping you find your next someone on okcupid.
 
-## overview
+- review current user profile according to set rules, and show a quick indicator with the verdict (<kbd>META + Numpad 8</kbd>)
+- 'like' current user profile (<kbd>META + Numpad 6</kbd>)
+- 'pass' current user profile (<kbd>META + Numpad 4</kbd>)
+- reload page to hopefully load a different user profile (<kbd>META + Numpad 2</kbd>)
 
-injects JavaScript into web pages, and runs it on-demand.
-
-based on the chrome-extensions sample [api-samples/userScripts][1].
-
-## notes
-
-- this extension uses the User Scripts API, which requires to enable developer-mode in the extensions page
-
-
-
-[1]: https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/api-samples/userScripts
