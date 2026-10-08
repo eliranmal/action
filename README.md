@@ -3,7 +3,7 @@
 
 ### overview
 
-a browser extension for helping you find your next someone on okcupid.
+a browser extension to streamline the user-experience on okcupid.
 
 ### actions
 
