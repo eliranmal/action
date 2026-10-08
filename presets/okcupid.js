@@ -96,6 +96,9 @@ const bindKeyboardShortcuts = () => {
             case 'Numpad4':
                 passProfile()
                 break;
+            case 'Numpad2':
+                location.reload()
+                break;
             default:
                 break;
         }
