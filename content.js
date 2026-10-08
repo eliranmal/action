@@ -23,6 +23,35 @@ const createLogBox = () => {
     return logBoxEl;
 }
 
+const highlightText = (terms, selector) => {
+    if (!CSS.highlights) {
+        console.log('css highlights not supported!')
+        return
+    }
+
+    CSS.highlights.clear()
+
+    const domWalker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, node => (
+        terms.some(t => node.data.includes(t)) ? NodeFilter.FILTER_ACCEPT : NodeFilter.FILTER_SKIP
+    ))
+
+    const termsTextNodes = []
+    while (domWalker.nextNode()) {
+        termsTextNodes.push(domWalker.currentNode)
+    }
+
+    const ranges = termsTextNodes.map(node => {
+        const range = document.createRange()
+        const term = terms.find(t => node.data.includes(t))
+        range.setStart(node, node.data.indexOf(term))
+        range.setEnd(node, node.data.indexOf(term) + term.length)
+        return range
+    })
+
+    const matchesHighlight = new Highlight(...ranges)
+    CSS.highlights.set(selector, matchesHighlight)
+}
+
 const reviewProfile = () => {
     const detailsEl = document.querySelector('.matchprofile-details')
 
@@ -38,8 +67,10 @@ const reviewProfile = () => {
 
     if (nayMatch) {
         popup('❌')
+        highlightText(rules.nay, 'nay-matches')
     } else if (yayMatch) {
         popup('✅')
+        highlightText(rules.yay, 'yay-matches')
     } else {
         popup('❔')
     }

@@ -1,4 +1,16 @@
 
+/* base */
+
+::highlight(yay-matches) {
+    color: white;
+    background-color: #00aa66;
+}
+
+::highlight(nay-matches) {
+    color: white;
+    background-color: #dd0066;
+}
+
 
 /* components */
 
