@@ -55,31 +55,39 @@ const likeProfile = () => {
     popdown()
     const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
     likeButtonEl.click()
-    popup('👍', 3)
+    popup('👍', 2)
 
 }
+
 const passProfile = () => {
     popdown()
     const bodyContentEl = document.querySelector('.desktop-dt-content')
     const passButtonEl = document.querySelector('.dt-action-buttons-button.pass')
     bodyContentEl?.scrollIntoView()
     passButtonEl.click()
-    popup('👎', 3)
+    popup('👎', 2)
 }
 
-const bindKeyListener = (key, callback, modifier = 'shiftKey') => {
-    document.addEventListener('keypress', (ev) => {
-        console.log(ev)
-        if (ev[modifier] && ev.key === key) {
-            callback?.()
-        }
-    })
-}
 
 const bindKeyboardShortcuts = () => {
-    bindKeyListener('R', reviewProfile)
-    bindKeyListener('L', likeProfile)
-    bindKeyListener('P', passProfile)
+    document.addEventListener('keypress', (ev) => {
+        if (!ev.metaKey) {
+            return;
+        }
+        switch (ev.code) {
+            case 'Numpad8':
+                reviewProfile()
+                break;
+            case 'Numpad6':
+                likeProfile()
+                break;
+            case 'Numpad4':
+                passProfile()
+                break;
+            default:
+                break;
+        }
+    })
 }
 
 const render = () => {
