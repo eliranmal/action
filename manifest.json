@@ -7,6 +7,13 @@
   "background": {
     "service_worker": "service-worker.js"
   },
+  "content_scripts": [
+    {
+      "matches": ["https://www.okcupid.com/*"],
+      "css": ["style.css"],
+      "js": ["content.js"]
+    }
+  ],
   "permissions": ["storage", "activeTab"],
   "host_permissions": ["https://www.okcupid.com/*"],
   "action": {},
