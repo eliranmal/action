@@ -25,17 +25,23 @@ const createLogBox = () => {
 
 const reviewProfile = () => {
     const detailsEl = document.querySelector('.matchprofile-details')
-    const familyDetailsEl = document.querySelector('.matchprofile-details-section--family')
 
     popdown()
 
-    if (!familyDetailsEl || !familyDetailsEl.textContent?.includes(`kid`)) {
-        popup('❔')
-    } else if (familyDetailsEl.textContent?.includes(`Doesn’t have kids and doesn’t want them`)) {
+    const rules = {
+        yay: ['Doesn’t have kids and doesn’t want them'],
+        nay: ['Smokes cigarettes regularly'],
+    }
+
+    const yayMatch = rules.yay.some(yRule => detailsEl.textContent.includes(yRule))
+    const nayMatch = rules.nay.some(nRule => detailsEl.textContent.includes(nRule))
+
+    if (nayMatch) {
+        popup('❌')
+    } else if (yayMatch) {
         popup('✅')
     } else {
-        detailsEl.scrollIntoView()
-        popup('❌')
+        popup('❔')
     }
 }
 
