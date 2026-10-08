@@ -14,9 +14,9 @@ const popup = (message, timeoutSeconds = 3) => {
 
 const popdown = () => {
     const logEl = document.getElementById('ok-buddy-log')
+    logEl.textContent = ''
     logEl.style.opacity = '1'
     logEl.style.transition = ''
-    logEl.textContent = ''
 }
 
 const createLogBox = () => {
