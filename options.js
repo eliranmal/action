@@ -62,7 +62,7 @@ async function onSave() {
     await chrome.userScripts.update([
       {
         id: USER_SCRIPT_ID,
-        matches: ['*://*/*'],
+        matches: ['https://www.okcupid.com/*'],
         js: type === 'file' ? [{ file: 'presets/okcupid.js' }] : [{ code: script }]
       }
     ]);
@@ -71,7 +71,7 @@ async function onSave() {
     await chrome.userScripts.register([
       {
         id: USER_SCRIPT_ID,
-        matches: ['*://*/*'],
+        matches: ['https://www.okcupid.com/*'],
         js: type === 'file' ? [{ file: 'presets/okcupid.js' }] : [{ code: script }]
       }
     ]);
