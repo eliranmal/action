@@ -70,6 +70,8 @@ const reviewProfile = async () => {
     } else {
         popup('❔')
     }
+
+    detailsEl.scrollIntoView()
 }
 
 const likeProfile = () => {
@@ -103,6 +105,9 @@ const bindHotkeys = () => {
         if (!ev.metaKey) {
             return;
         }
+
+        document.querySelector('.desktop-dt-wrapper').scrollIntoView()
+
         switch (ev.code) {
             case 'Numpad8':
                 reviewProfile()
