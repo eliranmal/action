@@ -8,15 +8,22 @@
   </head>
   <body>
     <form id="settings-form">
-      <h1>Settings</h1>
-      <h2>Custom script</h2>
+      <h1>settings</h1>
+      <h2>rules</h2>
+      <p>enter the phrases you want to allow or deny, one phrase per line.</p>
+      <h3>yes, please:</h3>
       <textarea
-        name="custom-script"
+        name="yay-rules-input"
         draggable="false"
-        rows="8"
-        placeholder="alert('hi');"
+        rows="5"
       ></textarea>
-      <button type="button" id="save-button">Save & Enable</button>
+      <h3>no, thank you:</h3>
+      <textarea
+        name="nay-rules-input"
+        draggable="false"
+        rows="5"
+      ></textarea>
+      <button type="button" id="save-button">save</button>
     </form>
   </body>
 </html>

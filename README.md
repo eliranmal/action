@@ -20,3 +20,10 @@ a browser extension to streamline the user-experience on okcupid.
     <dd>refreshes the page to hopefully load a different user profile.</dd>
 </dl>
 
+
+### settings
+
+<dl>
+    <dt>rules</dt>
+    <dd>has two fields, 'yes, please' and 'no, thank you'.  enter the phrases from user profiles you want to allow or deny, respectively (one phrase per line).</dd>
+</dl>

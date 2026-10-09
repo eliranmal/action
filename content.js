@@ -52,24 +52,12 @@ const highlightText = (terms, selector) => {
     CSS.highlights.set(selector, matchesHighlight)
 }
 
-const reviewProfile = () => {
+const reviewProfile = async () => {
     const detailsEl = document.querySelector('.matchprofile-details')
 
     popdown()
 
-    // todo - avoid hard-coding rules, and fetch them from storage (after stored there by the options page)
-    const rules = {
-        yay: [
-            'Doesn’t have kids and doesn’t want them',
-            'Doesn’t smoke cigarettes',
-        ],
-        nay: [
-            'Has kid(s)',
-            'Doesn’t have kids but wants them',
-            'Smokes cigarettes regularly',
-        ],
-    }
-
+    const rules = await chrome.runtime.sendMessage({ type: 'getRules' })
     const yayMatch = rules.yay.some(yRule => detailsEl.textContent.includes(yRule))
     const nayMatch = rules.nay.some(nRule => detailsEl.textContent.includes(nRule))
 
@@ -110,8 +98,7 @@ const messageProfile = () => {
     popup('✏️', 2)
 }
 
-
-const bindKeyboardShortcuts = () => {
+const bindHotkeys = () => {
     document.addEventListener('keypress', (ev) => {
         if (!ev.metaKey) {
             return;
@@ -144,7 +131,7 @@ const render = () => {
 
 const main = () => {
     render()
-    bindKeyboardShortcuts()
+    bindHotkeys()
 }
 
 main();
