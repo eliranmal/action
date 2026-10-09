@@ -19,31 +19,20 @@
     position: fixed;
     right: 2rem;
     bottom: 2rem;
-    width: 4rem;
-    height: 4rem;
-    border-radius: 2rem;
+    width: 5rem;
+    height: 5rem;
+    border-radius: 2.5rem;
 }
 
 .ok-buddy-log-text {
     --ok-buddy-log-transition-duration: 3s;
     z-index: 99999;
-    line-height: 4rem;
+    line-height: 5rem;
     text-align: center;
-    font-size: 1.5em;
-    opacity: 1;
-    transition-property: opacity;
-    transition-timing-function: ease-in;
-    transition-duration: var(--ok-buddy-log-transition-duration);
+    font-size: 2em;
 }
 
 .ok-buddy-log-box {
     z-index: 99998;
     background-color: #333;
-}
-
-
-/* utilities */
-
-.ok-buddy-transparent {
-    opacity: 0;
 }

@@ -1,16 +1,29 @@
 
-const popup = (message, timeoutSeconds = 3) => {
-    const logEl = document.getElementById('ok-buddy-log')
-    logEl.textContent = message
-    logEl.style['--ok-buddy-log-transition-duration'] = `${timeoutSeconds}s`
-    logEl.classList.add('ok-buddy-transparent')
-    setTimeout(popdown, timeoutSeconds * 1000)
+const fadeOut = (el, duration) => {
+    return el.animate(
+        [
+            { opacity: '1' },
+            { opacity: '0' },
+        ], {
+            fill: 'forwards',
+            duration,
+            iterations: 1,
+            timingFunction: 'ease-in',
+        });
 }
 
-const popdown = () => {
+let popupAnimation
+
+const popup = (message, timeoutSeconds = 3) => {
+    popupAnimation?.cancel()
+
     const logEl = document.getElementById('ok-buddy-log')
-    logEl.textContent = ''
-    logEl.classList.remove('ok-buddy-transparent')
+    logEl.textContent = message
+
+    popupAnimation = fadeOut(logEl, timeoutSeconds * 1000)
+    popupAnimation.onfinish = () => {
+        logEl.textContent = ''
+    }
 }
 
 const createLogBox = () => {
@@ -55,8 +68,6 @@ const highlightText = (terms, selector) => {
 const reviewProfile = async () => {
     const detailsEl = document.querySelector('.matchprofile-details')
 
-    popdown()
-
     const rules = await chrome.runtime.sendMessage({ type: 'getRules' })
     const yayMatch = rules.yay.some(yRule => detailsEl.textContent.includes(yRule))
     const nayMatch = rules.nay.some(nRule => detailsEl.textContent.includes(nRule))
@@ -75,7 +86,6 @@ const reviewProfile = async () => {
 }
 
 const likeProfile = () => {
-    popdown()
     const profilePageSelector = '#like-button'
     const discoverPageSelector = '.dt-action-buttons-button.like'
     const likeButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
@@ -84,7 +94,6 @@ const likeProfile = () => {
 }
 
 const passProfile = () => {
-    popdown()
     const profilePageSelector = '#pass-button'
     const discoverPageSelector = '.dt-action-buttons-button.pass'
     const passButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
@@ -93,7 +102,6 @@ const passProfile = () => {
 }
 
 const messageProfile = () => {
-    popdown()
     const profilePageSelector = '.profile-pill-buttons-button.message-pill-button'
     const messageButtonEl = document.querySelector(profilePageSelector)
     messageButtonEl?.click()
