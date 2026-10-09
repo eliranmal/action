@@ -6,7 +6,8 @@ const fadeOut = (el, duration) => {
             { opacity: '0' },
         ], {
             fill: 'forwards',
-            duration,
+            delay: duration * .67,
+            duration: duration * .33,
             iterations: 1,
             timingFunction: 'ease-in',
         });
@@ -14,7 +15,7 @@ const fadeOut = (el, duration) => {
 
 let popupAnimation
 
-const popup = (message, timeoutSeconds = 3) => {
+const popup = (message, timeoutSeconds = 4) => {
     popupAnimation?.cancel()
 
     const logEl = document.getElementById('ok-buddy-log')
@@ -90,7 +91,7 @@ const likeProfile = () => {
     const discoverPageSelector = '.dt-action-buttons-button.like'
     const likeButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
     likeButtonEl.click()
-    popup('👍', 2)
+    popup('👍', 1)
 }
 
 const passProfile = () => {
@@ -98,14 +99,14 @@ const passProfile = () => {
     const discoverPageSelector = '.dt-action-buttons-button.pass'
     const passButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
     passButtonEl.click()
-    popup('👎', 2)
+    popup('👎', 1)
 }
 
 const messageProfile = () => {
     const profilePageSelector = '.profile-pill-buttons-button.message-pill-button'
     const messageButtonEl = document.querySelector(profilePageSelector)
     messageButtonEl?.click()
-    popup('✏️', 2)
+    popup('✏️', 1)
 }
 
 const bindHotkeys = () => {
