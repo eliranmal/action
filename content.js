@@ -78,18 +78,28 @@ const reviewProfile = () => {
 
 const likeProfile = () => {
     popdown()
-    const likeButtonEl = document.querySelector('.dt-action-buttons-button.like')
+    const profilePageSelector = '#like-button'
+    const discoverPageSelector = '.dt-action-buttons-button.like'
+    const likeButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
     likeButtonEl.click()
     popup('👍', 2)
 }
 
 const passProfile = () => {
     popdown()
-    const bodyContentEl = document.querySelector('.desktop-dt-content')
-    const passButtonEl = document.querySelector('.dt-action-buttons-button.pass')
-    bodyContentEl?.scrollIntoView()
+    const profilePageSelector = '#pass-button'
+    const discoverPageSelector = '.dt-action-buttons-button.pass'
+    const passButtonEl = document.querySelector([profilePageSelector, discoverPageSelector].join(','))
     passButtonEl.click()
     popup('👎', 2)
+}
+
+const messageProfile = () => {
+    popdown()
+    const profilePageSelector = '.profile-pill-buttons-button.message-pill-button'
+    const messageButtonEl = document.querySelector(profilePageSelector)
+    messageButtonEl?.click()
+    popup('✏️', 2)
 }
 
 
@@ -107,6 +117,9 @@ const bindKeyboardShortcuts = () => {
                 break;
             case 'Numpad4':
                 passProfile()
+                break;
+            case 'Numpad5':
+                messageProfile()
                 break;
             case 'Numpad2':
                 location.reload()
