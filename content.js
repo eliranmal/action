@@ -115,7 +115,7 @@ const bindHotkeys = () => {
             return;
         }
 
-        document.querySelector('.desktop-dt-wrapper').scrollIntoView()
+        document.querySelector('.desktop-dt-wrapper')?.scrollIntoView()
 
         switch (ev.code) {
             case 'Numpad8':
