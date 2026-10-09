@@ -57,9 +57,17 @@ const reviewProfile = () => {
 
     popdown()
 
+    // todo - avoid hard-coding rules, and fetch them from storage (after stored there by the options page)
     const rules = {
-        yay: ['Doesn’t have kids and doesn’t want them'],
-        nay: ['Smokes cigarettes regularly'],
+        yay: [
+            'Doesn’t have kids and doesn’t want them',
+            'Doesn’t smoke cigarettes',
+        ],
+        nay: [
+            'Has kid(s)',
+            'Doesn’t have kids but wants them',
+            'Smokes cigarettes regularly',
+        ],
     }
 
     const yayMatch = rules.yay.some(yRule => detailsEl.textContent.includes(yRule))
